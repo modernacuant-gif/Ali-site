@@ -3,111 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>علی | صفحه شخصی</title>
+<title>هوش مصنوعی علی</title>
 
 <style>
 body{
-    margin:0;
-    font-family:tahoma,sans-serif;
-    background:#0f172a;
+    font-family:tahoma;
+    background:#111827;
     color:white;
+    margin:0;
 }
 
-header{
-    text-align:center;
-    padding:80px 20px;
-    background:linear-gradient(135deg,#1e293b,#0f172a);
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:20px;
 }
 
 h1{
-    font-size:48px;
+    text-align:center;
+}
+
+#chat{
+    background:#1f2937;
+    height:400px;
+    overflow-y:auto;
+    padding:15px;
+    border-radius:10px;
     margin-bottom:10px;
 }
 
-.subtitle{
-    color:#cbd5e1;
-    font-size:18px;
+.user{
+    color:#60a5fa;
+    margin:10px 0;
 }
 
-section{
-    max-width:900px;
-    margin:auto;
-    padding:50px 20px;
+.bot{
+    color:#34d399;
+    margin:10px 0;
 }
 
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:15px;
-    margin-bottom:20px;
+input{
+    width:75%;
+    padding:10px;
 }
 
-h2{
-    color:#38bdf8;
-}
-
-.button{
-    display:inline-block;
-    padding:12px 24px;
-    background:#38bdf8;
-    color:black;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#94a3b8;
+button{
+    padding:10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>علی</h1>
-    <p class="subtitle">
-        دانشجو | علاقه‌مند به هوش مصنوعی، فلسفه و تولید محتوا
-    </p>
-</header>
+<div class="container">
+    <h1>هوش مصنوعی علی</h1>
 
-<section>
-    <div class="card">
-        <h2>درباره من</h2>
-        <p>
-            سلام، من علی هستم. در زمینه هوش مصنوعی، تولید محتوا،
-            یادگیری مهارت‌های جدید و توسعه فردی فعالیت می‌کنم.
-        </p>
+    <div id="chat">
+        <div class="bot">سلام! هر سوالی داری بپرس.</div>
     </div>
 
-    <div class="card">
-        <h2>مهارت‌ها</h2>
-        <ul>
-            <li>هوش مصنوعی</li>
-            <li>تولید محتوا</li>
-            <li>زبان انگلیسی</li>
-            <li>تحلیل و پژوهش</li>
-        </ul>
-    </div>
+    <input id="userInput" placeholder="پیام خود را بنویس...">
+    <button onclick="sendMessage()">ارسال</button>
+</div>
 
-    <div class="card">
-        <h2>پروژه‌ها</h2>
-        <p>
-            در آینده پروژه‌ها و فعالیت‌های خود را در این بخش منتشر خواهم کرد.
-        </p>
-    </div>
+<script>
+function sendMessage(){
 
-    <div class="card">
-        <h2>ارتباط با من</h2>
-        <a href="#" class="button">تماس با من</a>
-    </div>
-</section>
+    let input = document.getElementById("userInput");
+    let message = input.value.toLowerCase();
 
-<footer>
-    © 2026 Ali - All Rights Reserved
-</footer>
+    if(message === "") return;
+
+    let chat = document.getElementById("chat");
+
+    chat.innerHTML +=
+    `<div class="user">شما: ${message}</div>`;
+
+    let response = "متوجه نشدم.";
+
+    if(message.includes("سلام")){
+        response = "سلام علی! خوش اومدی.";
+    }
+
+    else if(message.includes("اسم")){
+        response = "من هوش مصنوعی سایت علی هستم.";
+    }
+
+    else if(message.includes("هوش مصنوعی")){
+        response = "هوش مصنوعی فناوری ساخت سیستم‌هایی است که برخی کارهای فکری انسان را انجام می‌دهند.";
+    }
+
+    else if(message.includes("خداحافظ")){
+        response = "خداحافظ! موفق باشی.";
+    }
+
+    chat.innerHTML +=
+    `<div class="bot">ربات: ${response}</div>`;
+
+    input.value = "";
+
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
 
 </body>
 </html>
